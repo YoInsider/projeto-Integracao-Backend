@@ -1,29 +1,54 @@
 package org.example.model;
 
-public enum ProductCategories {
-    CRONOS_OLD("Cronos Old", ProductLines.CRONOS),
-    CRONOS_L("Cronos L", ProductLines.CRONOS),
-    CRONOS_NG("Cronos-NG", ProductLines.CRONOS),
-    ARES_TB("Ares TB", ProductLines.ARES),
-    ARES_THS("Ares THS", ProductLines.ARES);
+import javax.persistence.*;
+import java.util.List;
 
-    private final String nome;
-    private final ProductLines lines;
+@Entity
+@Table(name = "product_categories")
+public class ProductCategories {
 
-    ProductCategories(String nome, ProductLines lines) {
-        this.nome = nome;
-        this.lines = lines;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "line_id")
+    private ProductLines line;
+
+    @OneToMany(mappedBy = "category")
+    private List<ProductModels> models;
+
+    public long getId() {
+        return id;
     }
 
-    public String getNome() {
-        return nome;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public ProductLines getLines() {
-        return lines;
+    public String getName() {
+        return name;
     }
 
-    public String toString() {
-        return nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ProductLines getLine() {
+        return line;
+    }
+
+    public void setLine(ProductLines line) {
+        this.line = line;
+    }
+
+    public List<ProductModels> getModels() {
+        return models;
+    }
+
+    public void setModels(List<ProductModels> models) {
+        this.models = models;
     }
 }
