@@ -1,15 +1,12 @@
 package org.example.repository;
 
 import org.example.model.ProductLines;
-import org.hibernate.Session;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class ProductLinesRepository {
-
-    public List<ProductLines> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<ProductLines> lista = session.createQuery("from ProductLines", ProductLines.class).list();
-        return lista;
-    }
+@Repository
+public interface ProductLinesRepository extends JpaRepository<ProductLines, Long> {
+    List<ProductLines> findLineById(Long id);
 }
