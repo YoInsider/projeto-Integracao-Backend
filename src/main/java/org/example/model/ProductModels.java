@@ -8,7 +8,7 @@ public class ProductModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -38,5 +38,9 @@ public class ProductModels {
 
     public void setCategory(ProductCategories category) {
         this.category = category;
+    }
+
+    public String toString() {
+        return name;
     }
 }

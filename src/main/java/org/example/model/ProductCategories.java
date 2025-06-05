@@ -1,7 +1,6 @@
 package org.example.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "product_categories")
@@ -9,16 +8,13 @@ public class ProductCategories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "line_id")
     private ProductLines line;
-
-    @OneToMany(mappedBy = "category")
-    private List<ProductModels> models;
 
     public long getId() {
         return id;
@@ -44,11 +40,7 @@ public class ProductCategories {
         this.line = line;
     }
 
-    public List<ProductModels> getModels() {
-        return models;
-    }
-
-    public void setModels(List<ProductModels> models) {
-        this.models = models;
+    public String toString() {
+        return name;
     }
 }

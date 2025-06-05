@@ -1,7 +1,6 @@
 package org.example.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "product_lines")
@@ -9,12 +8,9 @@ public class ProductLines {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
-
-    @OneToMany(mappedBy = "line")
-    private List<ProductCategories> categories;
 
     public long getId() {
         return id;
@@ -32,11 +28,7 @@ public class ProductLines {
         this.name = name;
     }
 
-    public List<ProductCategories> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<ProductCategories> categories) {
-        this.categories = categories;
+    public String toString() {
+        return name;
     }
 }
