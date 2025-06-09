@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.model.ProductLines;
-import org.example.repository.ProductLinesRepository;
+import org.example.dao.ProductLinesDTO;
+import org.example.service.ProductLinesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +15,15 @@ import java.util.List;
 public class ProductLinesController {
 
     @Autowired
-    private ProductLinesRepository repo;
+    private ProductLinesService service;
 
     @GetMapping
-    public List<ProductLines> getAll() {
-        return repo.findAll();
+    public List<ProductLinesDTO> getAllLines() {
+        return service.getAllLines();
     }
 
     @GetMapping("/{id}")
-    public List<ProductLines> getById(@PathVariable Long id) {
-        return repo.findLineById(id);
+    public String getLineById(@PathVariable Long id) {
+        return service.getLineById(id);
     }
 }
