@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductModelsRepository {
 
     public List<ProductModels> findAll() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         List<ProductModels> modelsList = session.createQuery("from ProductModels", ProductModels.class).list();
         session.close();
         return modelsList;
