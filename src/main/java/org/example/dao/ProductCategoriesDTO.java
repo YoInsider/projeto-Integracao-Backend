@@ -1,16 +1,15 @@
 package org.example.dao;
 
-import org.example.model.ProductLines;
 
 public class ProductCategoriesDTO {
 
     private Long id;
     private String name;
-    private ProductLines line;
+    private ProductLinesDTO line;
 
     public ProductCategoriesDTO() {}
 
-    public ProductCategoriesDTO(Long id, String name, ProductLines line) {
+    public ProductCategoriesDTO(Long id, String name, ProductLinesDTO line) {
         this.id = id;
         this.name = name;
         this.line = line;
@@ -32,11 +31,11 @@ public class ProductCategoriesDTO {
         this.name = name;
     }
 
-    public ProductLines getLine() {
+    public ProductLinesDTO getLine() {
         return line;
     }
 
-    public void setLine(ProductLines line) {
+    public void setLine(ProductLinesDTO line) {
         this.line = line;
     }
 

@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.dao.ProductCategoriesDTO;
+import org.example.dao.ProductLinesDTO;
 import org.example.model.ProductCategories;
 import org.example.repository.ProductCategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ProductCategoriesService {
     public List<ProductCategoriesDTO> getAllCategories() {
         return repo.findAll()
                 .stream()
-                .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName(), cat.getLine()))
+                .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName(), new ProductLinesDTO(cat.getLine().getId(), cat.getLine().getName())))
                 .collect(Collectors.toList());
     }
 
@@ -28,7 +29,7 @@ public class ProductCategoriesService {
             List<ProductCategories> category = repo.findByLineId(id);
             List<ProductCategoriesDTO> categoryDTO = category
                     .stream()
-                    .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName(), cat.getLine()))
+                    .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName(), new ProductLinesDTO(cat.getLine().getId(), cat.getLine().getName())))
                     .collect(Collectors.toList());
             return categoryDTO;
         } else {

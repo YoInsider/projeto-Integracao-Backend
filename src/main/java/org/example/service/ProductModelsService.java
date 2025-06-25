@@ -1,5 +1,7 @@
 package org.example.service;
 
+import org.example.dao.ProductCategoriesDTO;
+import org.example.dao.ProductLinesDTO;
 import org.example.dao.ProductModelsDTO;
 import org.example.model.ProductModels;
 import org.example.repository.ProductModelsRepository;
@@ -19,7 +21,10 @@ public class ProductModelsService {
     public List<ProductModelsDTO> getAllModels() {
         return repo.findAll()
                 .stream()
-                .map(m -> new ProductModelsDTO(m.getId(), m.getName(), m.getCategory()))
+                .map(m -> new ProductModelsDTO(
+                        m.getId(), m.getName(),
+                        new ProductCategoriesDTO(m.getCategory().getId(), m.getCategory().getName(),
+                        new ProductLinesDTO(m.getCategory().getLine().getId(), m.getCategory().getLine().getName()))))
                 .collect(Collectors.toList());
     }
 
@@ -28,7 +33,10 @@ public class ProductModelsService {
             List<ProductModels> model = repo.findByCategoryId(id);
             List<ProductModelsDTO> modelDTO = model
                     .stream()
-                    .map(m -> new ProductModelsDTO(m.getId(), m.getName(), m.getCategory()))
+                    .map(m -> new ProductModelsDTO(
+                            m.getId(), m.getName(),
+                            new ProductCategoriesDTO(m.getCategory().getId(), m.getCategory().getName(),
+                            new ProductLinesDTO(m.getCategory().getLine().getId(), m.getCategory().getLine().getName()))))
                     .collect(Collectors.toList());
             return modelDTO;
         } else {

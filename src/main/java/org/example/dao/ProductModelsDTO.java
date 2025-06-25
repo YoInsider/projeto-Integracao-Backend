@@ -1,16 +1,14 @@
 package org.example.dao;
 
-import org.example.model.ProductCategories;
-
 public class ProductModelsDTO {
 
     private Long id;
     private String name;
-    private ProductCategories category;
+    private ProductCategoriesDTO category;
 
     public ProductModelsDTO() {}
 
-    public ProductModelsDTO(Long id, String name, ProductCategories category) {
+    public ProductModelsDTO(Long id, String name, ProductCategoriesDTO category) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -32,11 +30,11 @@ public class ProductModelsDTO {
         this.name = name;
     }
 
-    public ProductCategories getCategory() {
+    public ProductCategoriesDTO getCategory() {
         return category;
     }
 
-    public void setCategory(ProductCategories category) {
+    public void setCategory(ProductCategoriesDTO category) {
         this.category = category;
     }
 
