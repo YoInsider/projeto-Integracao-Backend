@@ -26,6 +26,6 @@ public class ProductModelsController {
 
     @GetMapping("/{id}")
     public List<ProductModelsDTO> getById(@PathVariable Long id) {
-        return repo.findByCategoryId(id);
+        return service.getModelByCategoryId(id);
     }
 }

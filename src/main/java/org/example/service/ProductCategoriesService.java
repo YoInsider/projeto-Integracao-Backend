@@ -19,7 +19,7 @@ public class ProductCategoriesService {
     public List<ProductCategoriesDTO> getAllCategories() {
         return repo.findAll()
                 .stream()
-                .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName()))
+                .map(cat -> new ProductCategoriesDTO(cat.getId(), cat.getName(), cat.getLine()))
                 .collect(Collectors.toList());
     }
 

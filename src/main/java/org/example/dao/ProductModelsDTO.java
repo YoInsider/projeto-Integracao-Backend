@@ -6,20 +6,14 @@ public class ProductModelsDTO {
 
     private Long id;
     private String name;
-    private ProductCategoriesDTO category;
+    private ProductCategories category;
 
     public ProductModelsDTO() {}
 
-    public ProductModelsDTO(Long id, String name, ProductCategoriesDTO category) {
+    public ProductModelsDTO(Long id, String name, ProductCategories category) {
         this.id = id;
         this.name = name;
         this.category = category;
-    }
-
-    public ProductModelsDTO(Long id, String name, ProductCategories category) {
-    }
-
-    public ProductModelsDTO(Long id, String name) {
     }
 
     public Long getId() {
@@ -38,11 +32,11 @@ public class ProductModelsDTO {
         this.name = name;
     }
 
-    public ProductCategoriesDTO getCategory() {
+    public ProductCategories getCategory() {
         return category;
     }
 
-    public void setCategory(ProductCategoriesDTO category) {
+    public void setCategory(ProductCategories category) {
         this.category = category;
     }
 

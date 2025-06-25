@@ -19,7 +19,7 @@ public class ProductModelsService {
     public List<ProductModelsDTO> getAllModels() {
         return repo.findAll()
                 .stream()
-                .map(m -> new ProductModelsDTO(m.getId(), m.getName()))
+                .map(m -> new ProductModelsDTO(m.getId(), m.getName(), m.getCategory()))
                 .collect(Collectors.toList());
     }
 
