@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/modelos")
+@RequestMapping("/api/models")
 public class ProductModelsController {
 
      @Autowired
