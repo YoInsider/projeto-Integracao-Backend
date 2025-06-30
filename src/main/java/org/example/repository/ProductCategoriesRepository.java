@@ -1,17 +1,12 @@
 package org.example.repository;
 
 import org.example.model.ProductCategories;
-import org.example.util.HibernateUtil;
-import org.hibernate.Session;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class ProductCategoriesRepository {
-
-    public List<ProductCategories> findAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<ProductCategories> categoriesList = session.createQuery("from ProductCategories", ProductCategories.class).list();
-        session.close();
-        return categoriesList;
-    }
+@Repository
+public interface ProductCategoriesRepository extends JpaRepository<ProductCategories, Long> {
+    List<ProductCategories> findByLineId(Long lineId);
 }

@@ -39,8 +39,4 @@ public class ProductModels {
     public void setCategory(ProductCategories category) {
         this.category = category;
     }
-
-    public String toString() {
-        return name;
-    }
 }

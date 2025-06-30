@@ -39,8 +39,4 @@ public class ProductCategories {
     public void setLine(ProductLines line) {
         this.line = line;
     }
-
-    public String toString() {
-        return name;
-    }
 }
