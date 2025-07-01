@@ -16,6 +16,12 @@ public class ProductModels {
     @JoinColumn(name = "category_id")
     private ProductCategories category;
 
+    public ProductModels(Long id, String name, ProductCategories category) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+    }
+
     public long getId() {
         return id;
     }
