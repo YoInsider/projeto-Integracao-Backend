@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ProductModelsController.class)
-class ProductModelsControllerTest {
+public class ProductModelsControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,7 +31,7 @@ class ProductModelsControllerTest {
     private ProductModelsService productModelsService;
 
     @Test
-    void testGetAllModels() throws Exception {
+    public void testGetAllModels() throws Exception {
         ProductCategoriesDTO category = new ProductCategoriesDTO(1L, "Category A", new ProductLinesDTO(1L, "Line A"));
         List<ProductModelsDTO> mockModels = Arrays.asList(
                 new ProductModelsDTO(1L, "Model A", category),
@@ -55,7 +55,7 @@ class ProductModelsControllerTest {
     }
 
     @Test
-    void testGetModelsByCategoryId() throws Exception {
+    public void testGetModelsByCategoryId() throws Exception {
         Long categoryId = 1L;
         ProductCategoriesDTO category = new ProductCategoriesDTO(categoryId, "Category A", new ProductLinesDTO(1L, "Line A"));
 

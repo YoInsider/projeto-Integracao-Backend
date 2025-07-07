@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductLinesServiceTest {
+public class ProductLinesServiceTest {
     @Mock
     private ProductLinesRepository repo;
 
@@ -24,7 +24,7 @@ class ProductLinesServiceTest {
     private ProductLinesService productLinesService;
 
     @Test
-    void testGetAllLines() {
+    public void testGetAllLines() {
         List<ProductLines> mockLines = Arrays.asList(
                 new ProductLines(1L, "Line A"),
                 new ProductLines(2L, "Line B")
@@ -34,19 +34,17 @@ class ProductLinesServiceTest {
 
         List<ProductLinesDTO> result = productLinesService.getAllLines();
 
-        assertAll(
-                () -> assertEquals(1L, result.get(0).getId()),
-                () -> assertEquals("Line A", result.get(0).getName()),
-                () -> assertEquals(2L, result.get(1).getId()),
-                () -> assertEquals("Line B", result.get(1).getName()),
-                () -> assertEquals(2, result.size())
-        );
+        assertEquals(1L, result.get(0).getId());
+        assertEquals("Line A", result.get(0).getName());
+        assertEquals(2L, result.get(1).getId());
+        assertEquals("Line B", result.get(1).getName());
+        assertEquals(2, result.size());
 
         verify(repo).findAll();
     }
 
     @Test
-    void testGetLineByIdSuccess() {
+    public void testGetLineByIdSuccess() {
         ProductLines mockLines = new ProductLines(1L, "Line A");
 
         when(repo.existsById(1L)).thenReturn(true);
@@ -61,7 +59,7 @@ class ProductLinesServiceTest {
     }
 
     @Test
-    void testGetLineByIdError() {
+    public void testGetLineByIdError() {
         Long id = 999L;
 
         when(repo.existsById(id)).thenReturn(false);
@@ -71,6 +69,6 @@ class ProductLinesServiceTest {
         assertEquals("This id doesn't have a related line", result);
 
         verify(repo).existsById(id);
-        verify(repo, never()).findLineById(anyLong());
+        verify(repo, never()).findLineById(id);
     }
 }

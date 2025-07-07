@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductModelsServiceTest {
+public class ProductModelsServiceTest {
     @Mock
     private ProductModelsRepository repo;
 
@@ -27,7 +27,7 @@ class ProductModelsServiceTest {
     private ProductModelsService productModelsService;
 
     @Test
-    void testGetAllModels() {
+    public void testGetAllModels() {
         ProductCategories category = new ProductCategories(1L, "Category A", new ProductLines(1L, "Line A"));
 
         List<ProductModels> mockModels = Arrays.asList(
@@ -39,21 +39,19 @@ class ProductModelsServiceTest {
 
         List<ProductModelsDTO> result = productModelsService.getAllModels();
 
-        assertAll(
-                () -> assertEquals(2, result.size()),
-                () -> assertEquals(1L, result.get(0).getId()),
-                () -> assertEquals("Model A", result.get(0).getName()),
-                () -> assertEquals(2L, result.get(1).getId()),
-                () -> assertEquals("Model B", result.get(1).getName()),
-                () -> assertEquals("Category A", result.get(0).getCategory().getName()),
-                () -> assertEquals("Line A", result.get(0).getCategory().getLine().getName())
-        );
+        assertEquals(2, result.size());
+        assertEquals(1L, result.get(0).getId());
+        assertEquals("Model A", result.get(0).getName());
+        assertEquals(2L, result.get(1).getId());
+        assertEquals("Model B", result.get(1).getName());
+        assertEquals("Category A", result.get(0).getCategory().getName());
+        assertEquals("Line A", result.get(0).getCategory().getLine().getName());
 
         verify(repo).findAll();
     }
 
     @Test
-    void testGetModelByCategoryIdSuccess() {
+    public void testGetModelByCategoryIdSuccess() {
         Long categoryId = 1L;
         ProductCategories category = new ProductCategories(categoryId, "Category A", new ProductLines(1L, "Line A"));
 
@@ -67,21 +65,19 @@ class ProductModelsServiceTest {
 
         List<ProductModelsDTO> result = productModelsService.getModelByCategoryId(categoryId);
 
-        assertAll(
-                () -> assertEquals(2, result.size()),
-                () -> assertEquals("Model A", result.get(0).getName()),
-                () -> assertEquals("Category A", result.get(0).getCategory().getName()),
-                () -> assertEquals("Model B", result.get(1).getName()),
-                () -> assertEquals("Category A", result.get(1).getCategory().getName()),
-                () -> assertEquals(1L, result.get(0).getId())
-        );
+        assertEquals(2, result.size());
+        assertEquals("Model A", result.get(0).getName());
+        assertEquals("Category A", result.get(0).getCategory().getName());
+        assertEquals("Model B", result.get(1).getName());
+        assertEquals("Category A", result.get(1).getCategory().getName());
+        assertEquals(1L, result.get(0).getId());
 
         verify(repo).existsById(categoryId);
         verify(repo).findByCategoryId(categoryId);
     }
 
     @Test
-    void testGetModelByCategoryIdError() {
+    public void testGetModelByCategoryIdError() {
         Long categoryId = 999L;
 
         when(repo.existsById(categoryId)).thenReturn(false);
@@ -93,6 +89,6 @@ class ProductModelsServiceTest {
         assertEquals("This model id doesn't have a related category", exception.getMessage());
 
         verify(repo).existsById(categoryId);
-        verify(repo, never()).findByCategoryId(anyLong());
+        verify(repo, never()).findByCategoryId(categoryId);
     }
 }

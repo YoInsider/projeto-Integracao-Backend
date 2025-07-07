@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductCategoriesServiceTest {
+public class ProductCategoriesServiceTest {
     @Mock
     private ProductCategoriesRepository repo;
 
@@ -26,7 +26,7 @@ class ProductCategoriesServiceTest {
     private ProductCategoriesService productCategoriesService;
 
     @Test
-    void testGetAllCategories() {
+    public void testGetAllCategories() {
         ProductLines line = new ProductLines(1L, "Line A");
 
         List<ProductCategories> mockCategories = Arrays.asList(
@@ -38,20 +38,18 @@ class ProductCategoriesServiceTest {
 
         List<ProductCategoriesDTO> result = productCategoriesService.getAllCategories();
 
-        assertAll(
-                () -> assertEquals(1L, result.get(0).getId()),
-                () -> assertEquals("Category A", result.get(0).getName()),
-                () -> assertEquals(2L, result.get(1).getId()),
-                () -> assertEquals("Category B", result.get(1).getName()),
-                () -> assertEquals("Line A", result.get(0).getLine().getName()),
-                () -> assertEquals(2, result.size())
-        );
+        assertEquals(1L, result.get(0).getId());
+        assertEquals("Category A", result.get(0).getName());
+        assertEquals(2L, result.get(1).getId());
+        assertEquals("Category B", result.get(1).getName());
+        assertEquals("Line A", result.get(0).getLine().getName());
+        assertEquals(2, result.size());
 
         verify(repo).findAll();
     }
 
     @Test
-    void testGetCategoryByLineIdSuccess() {
+    public void testGetCategoryByLineIdSuccess() {
         Long lineId = 1L;
         ProductLines line = new ProductLines(lineId, "Line A");
 
@@ -65,20 +63,18 @@ class ProductCategoriesServiceTest {
 
         List<ProductCategoriesDTO> result = productCategoriesService.getCategoryByLineId(lineId);
 
-        assertAll(
-                () -> assertEquals(2, result.size()),
-                () -> assertEquals("Category A", result.get(0).getName()),
-                () -> assertEquals("Line A", result.get(0).getLine().getName()),
-                () -> assertEquals("Category B", result.get(1).getName()),
-                () -> assertEquals("Line A", result.get(1).getLine().getName())
-        );
+        assertEquals(2, result.size());
+        assertEquals("Category A", result.get(0).getName());
+        assertEquals("Line A", result.get(0).getLine().getName());
+        assertEquals("Category B", result.get(1).getName());
+        assertEquals("Line A", result.get(1).getLine().getName());
 
         verify(repo).existsById(lineId);
         verify(repo).findByLineId(lineId);
     }
 
     @Test
-    void testGetCategoryByLineIdError() {
+    public void testGetCategoryByLineIdError() {
         Long lineId = 999L;
 
         when(repo.existsById(lineId)).thenReturn(false);
@@ -90,6 +86,6 @@ class ProductCategoriesServiceTest {
         assertEquals("This category id doesn't have a related line", exception.getMessage());
 
         verify(repo).existsById(lineId);
-        verify(repo, never()).findByLineId(anyLong());
+        verify(repo, never()).findByLineId(lineId);
     }
 }

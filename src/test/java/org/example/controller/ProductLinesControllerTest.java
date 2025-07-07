@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ProductLinesController.class)
-class ProductLinesControllerTest {
+public class ProductLinesControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -28,7 +28,7 @@ class ProductLinesControllerTest {
     private ProductLinesService productLinesService;
 
     @Test
-    void testGetAllLines() throws Exception {
+    public void testGetAllLines() throws Exception {
         List<ProductLinesDTO> mockLines = Arrays.asList(
                 new ProductLinesDTO(1L, "Line A"),
                 new ProductLinesDTO(2L, "Line B")
@@ -48,7 +48,7 @@ class ProductLinesControllerTest {
     }
 
     @Test
-    void testGetLineById() throws Exception {
+    public void testGetLineById() throws Exception {
         when(productLinesService.getLineById(1L)).thenReturn("Line A");
 
         mockMvc.perform(get("/api/lines/1"))
