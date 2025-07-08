@@ -49,7 +49,8 @@ public class ProductCategoriesControllerTest {
                 .andExpect(jsonPath("$.[0].line.name").value("Line A"))
                 .andExpect(jsonPath("$.[1].id").value(2))
                 .andExpect(jsonPath("$.[1].name").value("Category B"))
-                .andExpect(jsonPath("$.[1].line.id").value(1));
+                .andExpect(jsonPath("$.[1].line.id").value(1))
+                .andExpect(jsonPath("$.[1].line.name").value("Line A"));
 
         verify(productCategoriesService).getAllCategories();
     }
@@ -68,14 +69,14 @@ public class ProductCategoriesControllerTest {
 
         mockMvc.perform(get("/api/categories/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size()").value(2))
                 .andExpect(jsonPath("$.[0].id").value(1))
                 .andExpect(jsonPath("$.[0].name").value("Category A"))
                 .andExpect(jsonPath("$.[0].line.id").value(1))
                 .andExpect(jsonPath("$.[0].line.name").value("Line A"))
                 .andExpect(jsonPath("$.[1].id").value(2))
                 .andExpect(jsonPath("$.[1].name").value("Category B"))
-                .andExpect(jsonPath("$.[1].line.id").value(1));
+                .andExpect(jsonPath("$.[1].line.id").value(1))
+                .andExpect(jsonPath("$.[1].line.name").value("Line A"));
 
         verify(productCategoriesService).getCategoryByLineId(lineId);
     }

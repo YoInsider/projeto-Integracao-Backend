@@ -40,9 +40,12 @@ public class ProductCategoriesServiceTest {
 
         assertEquals(1L, result.get(0).getId());
         assertEquals("Category A", result.get(0).getName());
+        assertEquals(1L, result.get(0).getLine().getId());
+        assertEquals("Line A", result.get(0).getLine().getName());
         assertEquals(2L, result.get(1).getId());
         assertEquals("Category B", result.get(1).getName());
-        assertEquals("Line A", result.get(0).getLine().getName());
+        assertEquals(1L, result.get(1).getLine().getId());
+        assertEquals("Line A", result.get(1).getLine().getName());
         assertEquals(2, result.size());
 
         verify(repo).findAll();
@@ -64,9 +67,13 @@ public class ProductCategoriesServiceTest {
         List<ProductCategoriesDTO> result = productCategoriesService.getCategoryByLineId(lineId);
 
         assertEquals(2, result.size());
+        assertEquals(1L, result.get(0).getId());
         assertEquals("Category A", result.get(0).getName());
+        assertEquals(1L, result.get(0).getLine().getId());
         assertEquals("Line A", result.get(0).getLine().getName());
+        assertEquals(2L, result.get(1).getId());
         assertEquals("Category B", result.get(1).getName());
+        assertEquals(1L, result.get(1).getLine().getId());
         assertEquals("Line A", result.get(1).getLine().getName());
 
         verify(repo).existsById(lineId);

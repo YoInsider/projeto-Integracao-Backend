@@ -47,9 +47,16 @@ public class ProductModelsControllerTest {
                 .andExpect(jsonPath("$.[0].name").value("Model A"))
                 .andExpect(jsonPath("$.[0].category.id").value(1))
                 .andExpect(jsonPath("$.[0].category.name").value("Category A"))
+                .andExpect(jsonPath("$.[0].category.id").value(1))
+                .andExpect(jsonPath("$.[0].category.line.id").value(1))
                 .andExpect(jsonPath("$.[0].category.line.name").value("Line A"))
                 .andExpect(jsonPath("$.[1].id").value(2))
-                .andExpect(jsonPath("$.[1].name").value("Model B"));
+                .andExpect(jsonPath("$.[1].name").value("Model B"))
+                .andExpect(jsonPath("$.[1].category.id").value(1))
+                .andExpect(jsonPath("$.[1].category.name").value("Category A"))
+                .andExpect(jsonPath("$.[1].category.id").value(1))
+                .andExpect(jsonPath("$.[1].category.line.id").value(1))
+                .andExpect(jsonPath("$.[1].category.line.name").value("Line A"));
 
         verify(productModelsService).getAllModels();
     }
@@ -73,9 +80,16 @@ public class ProductModelsControllerTest {
                 .andExpect(jsonPath("$.[0].name").value("Model A"))
                 .andExpect(jsonPath("$.[0].category.id").value(1))
                 .andExpect(jsonPath("$.[0].category.name").value("Category A"))
+                .andExpect(jsonPath("$.[0].category.id").value(1))
+                .andExpect(jsonPath("$.[0].category.line.id").value(1))
                 .andExpect(jsonPath("$.[0].category.line.name").value("Line A"))
                 .andExpect(jsonPath("$.[1].id").value(2))
-                .andExpect(jsonPath("$.[1].name").value("Model B"));
+                .andExpect(jsonPath("$.[1].name").value("Model B"))
+                .andExpect(jsonPath("$.[1].category.id").value(1))
+                .andExpect(jsonPath("$.[1].category.name").value("Category A"))
+                .andExpect(jsonPath("$.[1].category.id").value(1))
+                .andExpect(jsonPath("$.[1].category.line.id").value(1))
+                .andExpect(jsonPath("$.[1].category.line.name").value("Line A"));
 
         verify(productModelsService).getModelByCategoryId(categoryId);
     }

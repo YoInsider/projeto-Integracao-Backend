@@ -42,10 +42,16 @@ public class ProductModelsServiceTest {
         assertEquals(2, result.size());
         assertEquals(1L, result.get(0).getId());
         assertEquals("Model A", result.get(0).getName());
+        assertEquals(1L, result.get(0).getCategory().getId());
+        assertEquals("Category A", result.get(0).getCategory().getName());
+        assertEquals(1L, result.get(0).getCategory().getLine().getId());
+        assertEquals("Line A", result.get(0).getCategory().getLine().getName());
         assertEquals(2L, result.get(1).getId());
         assertEquals("Model B", result.get(1).getName());
-        assertEquals("Category A", result.get(0).getCategory().getName());
-        assertEquals("Line A", result.get(0).getCategory().getLine().getName());
+        assertEquals(1L, result.get(1).getCategory().getId());
+        assertEquals("Category A", result.get(1).getCategory().getName());
+        assertEquals(1L, result.get(1).getCategory().getLine().getId());
+        assertEquals("Line A", result.get(1).getCategory().getLine().getName());
 
         verify(repo).findAll();
     }
@@ -66,11 +72,18 @@ public class ProductModelsServiceTest {
         List<ProductModelsDTO> result = productModelsService.getModelByCategoryId(categoryId);
 
         assertEquals(2, result.size());
-        assertEquals("Model A", result.get(0).getName());
-        assertEquals("Category A", result.get(0).getCategory().getName());
-        assertEquals("Model B", result.get(1).getName());
-        assertEquals("Category A", result.get(1).getCategory().getName());
         assertEquals(1L, result.get(0).getId());
+        assertEquals("Model A", result.get(0).getName());
+        assertEquals(1L, result.get(0).getCategory().getId());
+        assertEquals("Category A", result.get(0).getCategory().getName());
+        assertEquals(1L, result.get(0).getCategory().getLine().getId());
+        assertEquals("Line A", result.get(0).getCategory().getLine().getName());
+        assertEquals(2L, result.get(1).getId());
+        assertEquals("Model B", result.get(1).getName());
+        assertEquals(1L, result.get(1).getCategory().getId());
+        assertEquals("Category A", result.get(1).getCategory().getName());
+        assertEquals(1L, result.get(1).getCategory().getLine().getId());
+        assertEquals("Line A", result.get(1).getCategory().getLine().getName());
 
         verify(repo).existsById(categoryId);
         verify(repo).findByCategoryId(categoryId);
