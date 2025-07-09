@@ -28,7 +28,7 @@ public class ProductLinesService {
             ProductLinesDTO lineDTO = new ProductLinesDTO(line.getId(), line.getName());
             return lineDTO.getName();
         } else {
-            return String.format("Id %s doesn't have a related line.", id);
+            return String.format("This id doesn't have a related line", id);
         }
     }
 }

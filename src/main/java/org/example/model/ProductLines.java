@@ -12,6 +12,15 @@ public class ProductLines {
 
     private String name;
 
+    public ProductLines() {
+
+    }
+
+    public ProductLines(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
