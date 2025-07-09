@@ -1,8 +1,6 @@
 package org.example.controller;
 
 import org.example.dao.ProductModelsDTO;
-import org.example.model.ProductModels;
-import org.example.repository.ProductModelsRepository;
 import org.example.service.ProductModelsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +18,12 @@ public class ProductModelsController {
      private ProductModelsService service;
 
     @GetMapping
-    public List<ProductModelsDTO> getAll() {
+    public List<ProductModelsDTO> getAllModels() {
         return service.getAllModels();
     }
 
     @GetMapping("/{id}")
-    public List<ProductModelsDTO> getById(@PathVariable Long id) {
+    public List<ProductModelsDTO> getModelsByCategoryId(@PathVariable Long id) {
         return service.getModelByCategoryId(id);
     }
 }

@@ -33,7 +33,7 @@ public class ProductCategoriesService {
                     .collect(Collectors.toList());
             return categoryDTO;
         } else {
-            throw new EntityNotFoundException("Category %s doesn't have a related line");
+            throw new EntityNotFoundException("This category id doesn't have a related line");
         }
     }
 }

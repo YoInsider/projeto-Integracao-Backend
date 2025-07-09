@@ -40,7 +40,7 @@ public class ProductModelsService {
                     .collect(Collectors.toList());
             return modelDTO;
         } else {
-            throw new EntityNotFoundException("Models %s doesn't have a related category");
+            throw new EntityNotFoundException("This model id doesn't have a related category");
         }
     }
 }
